@@ -41,7 +41,4 @@ g <- ggplot(data = outcomes.train,
          title = "Difference in outcome between species.")
 g
 
-# Transforming the Age upon outcome in a workable format.
-
-train.data$
 
