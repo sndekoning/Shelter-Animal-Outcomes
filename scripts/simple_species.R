@@ -19,25 +19,18 @@ set.seed(27062016)
 library(rpart)
 library(tidyr)
 
-
 # Running the model.
+
 species.model <- rpart(formula = OutcomeType ~ AnimalType + SexuponOutcome,
-                       data = train.data,
+                      data = train.data,
                        method = "class")
 
 # Creating the prediction.
-prediction <- predict(species.model, test.data, type = "class")
+prediction <- predict(species.model, test.data)
 
 # Save the solution to a dataframe
-solution <- data.frame("Prediction" = prediction)
-
-SetHigh <- function(data){
-    for(i in nrow(data)){
-        data[which(data[i,] == max(data[i,]))] <- 1
-    }
-}
-
-
+solution <- data.frame(ID = test.data$ID,
+                       "Prediction" = prediction)
 
 # Setting the proper heading names
 name <- c("ID", "Adoption", "Died", "Euthanasia", "Return_to_owner", "Transfer")
